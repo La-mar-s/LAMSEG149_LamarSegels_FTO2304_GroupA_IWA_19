@@ -5,6 +5,9 @@ import { books, authors, genres, BOOKS_PER_PAGE } from "./data.js";
 let page = 1;
 let matches = books;
 
+/* fixed the code and replaced the original with a correct loop that iterates
+ over the matches array and creates preview elements to add to the starting fragment.*/
+
 const starting = document.createDocumentFragment();
 
 for (const { author, id, image, title } of matches.slice(0, BOOKS_PER_PAGE)) {
@@ -29,6 +32,9 @@ for (const { author, id, image, title } of matches.slice(0, BOOKS_PER_PAGE)) {
 
 document.querySelector("[data-list-items]").appendChild(starting);
 
+/*replaced the original code with a correct loop that iterates over the genres object
+ and creates option elements with the appropriate values and texts to add to the genreHtml fragment.*/ 
+
 const genreHtml = document.createDocumentFragment();
 const firstGenreElement = document.createElement("option");
 firstGenreElement.value = "any";
@@ -45,6 +51,9 @@ for (const [id, name] of Object.entries(genres)) {
 }
 
 document.querySelector("[data-search-genres]").appendChild(genreHtml);
+
+/*replaced the original code with a correct loop that iterates over the authors object
+ and creates option elements with the appropriate values and texts to add to the authorsHtml fragment.*/ 
 
 const authorsHtml = document.createDocumentFragment();
 const firstAuthorElement = document.createElement("option");
@@ -103,6 +112,9 @@ document
     document.querySelector("[data-settings-overlay]").open = false;
   });
 
+/*added the event listener properly, which opens the search overlay and sets focus
+ on the search title input field when the "Search" header is clicked. */
+
 document.querySelector("[data-header-search]").addEventListener("click", () => {
   document.querySelector("[data-search-overlay]").open = true;
   document.querySelector("[data-search-title]").focus();
@@ -117,6 +129,9 @@ document
 document.querySelector("[data-list-close]").addEventListener("click", () => {
   document.querySelector("[data-list-active]").open = false;
 });
+
+/*added the correct event listener for the form submission and updates the theme color 
+ variables based on the user's choice of theme (dark or light).*/
 
 document
   .querySelector("[data-settings-form]")
@@ -141,6 +156,10 @@ document
 
     document.querySelector("[data-settings-overlay]").open = false;
   });
+
+/*added the correct event listener for the form submission and 
+  correctly filters the books based on the search criteria provided by the user.
+   It also updates the book list and the remaining button accordingly. */
 
 document
   .querySelector("[data-search-form]")
@@ -226,6 +245,8 @@ document
     document.querySelector("[data-search-overlay]").open = false;
   });
 
+/*added the event listener to the "Show more" button and creates a fragment with
+ preview elements to display more books when the button is clicked.*/
 
 document.querySelector("[data-list-button]").addEventListener("click", () => {
   const fragment = document.createDocumentFragment();
@@ -256,6 +277,9 @@ document.querySelector("[data-list-button]").addEventListener("click", () => {
   document.querySelector("[data-list-items]").appendChild(fragment);
   page += 1;
 });
+
+/* added the correct event listener to the book preview items and properly
+ displays the detailed information of the selected book in the active overlay. */
 
 document
   .querySelector("[data-list-items]")
